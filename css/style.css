@@ -51,3 +51,33 @@ nav a:hover {
     color: white;
     border-radius: 5px;
 }
+
+/* Dark Mode */
+body.dark-mode {
+    --background-color: #1a1a2e;   /* fundal întunecat */
+    --text-color: #e0e0e0;         /* text deschis */
+    --primary-color: #333;         /* butoane / nav background */
+    --secondary-color: #555;       /* hover butoane */
+}
+body, nav a, .button {
+    transition: background-color 0.3s, color 0.3s; /* animație smooth */
+}
+
+
+/* Dark Mode pentru formular */
+body.dark-mode footer {
+    background-color: #222;
+    color: #e0e0e0;
+}
+
+body.dark-mode footer input,
+body.dark-mode footer textarea {
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #555;
+}
+
+body.dark-mode footer button {
+    background-color: var(--primary-color);
+    color: white;
+}
