@@ -1,16 +1,34 @@
-// Funcția care preia datele din formular
-function submitForm() {
-    // Salvăm valorile câmpurilor în constante
+const form = document.querySelector('form');
+
+form.addEventListener('submit', function(event) {
+
+    event.preventDefault();
+    
     const nume = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const mesaj = document.getElementById("message").value;
 
-    // Afișăm valorile în consola browserului
-    console.log("Nume:", nume);
-    console.log("Email:", email);
-    console.log("Mesaj:", mesaj);
+    const feedback = document.getElementById("form-feedback");
 
-    // Avertisment la final
-    console.warn("Goodbye World!");
-}
+    if (nume.length < 2) {
+        feedback.textContent = "Nume prea scurt!";
+        feedback.style.color = "red";
+        return;
+    }
 
+    if (!email.includes("@")) {
+        feedback.textContent = "Email invalid!";
+        feedback.style.color = "red";
+        return;
+    }
+
+    if (mesaj.length < 10) {
+        feedback.textContent = "Mesajul trebuie să aibă cel puțin 10 caractere!";
+        feedback.style.color = "red";
+        return;
+    }
+
+    feedback.textContent = `Mulțumim, ${nume}! Mesajul a fost trimis.`;
+    feedback.style.color = "green";
+
+});
