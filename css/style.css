@@ -81,3 +81,45 @@ body.dark-mode footer button {
     background-color: var(--primary-color);
     color: white;
 }
+
+/* Stiluri pentru Exercițiul 4 - Toggle Visibility */
+.hidden {
+    display: none !important;
+}
+
+main h2 {
+    cursor: pointer; /* Schimbă mouse-ul în mână când treci peste titlu */
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.05); /* Un fundal discret sub titlu */
+    border-radius: 5px;
+    margin-bottom: 10px;
+    user-select: none; /* Previne selectarea textului la click repetat */
+    transition: background 0.3s;
+}
+
+main h2:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Ajustare pentru Dark Mode */
+body.dark-mode main h2 {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+
+
+/* Această regulă oferă spațiu între TOATE secțiunile din pagină */
+main section {
+    display: block;        /* Se asigură că ocupă tot rândul */
+    margin-top: 40px;      /* Creează un gol mare deasupra fiecărei secțiuni */
+    padding-top: 20px;
+    border-top: 1px solid #eee; /* O linie foarte fină care separă vizual temele */
+}
+
+/* Prima secțiune (Despre mine) nu are nevoie de spațiu sus, că e prima */
+main section:first-of-type {
+    margin-top: 0;
+    border-top: none;
+}

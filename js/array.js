@@ -35,3 +35,25 @@ const totalAni = educationArray.reduce((acc, item) => {
 }, 0);
 
 console.log(`Exercițiul 4 - Total ani de studiu: ${totalAni}`);
+
+
+
+
+const titluriSectiuni = document.querySelectorAll('main h2');
+titluriSectiuni.forEach(h2 => {
+
+    h2.innerHTML = '▼ ' + h2.innerHTML;
+    h2.addEventListener('click', function() {
+        
+        const continut = this.nextElementSibling;
+
+        if (continut) {  
+            continut.classList.toggle('hidden');
+            if (continut.classList.contains('hidden')) {
+                this.innerHTML = this.innerHTML.replace('▼', '▶');
+            } else {
+                this.innerHTML = this.innerHTML.replace('▶', '▼');
+            }
+        }
+    });
+});
