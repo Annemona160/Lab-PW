@@ -1,9 +1,10 @@
+import Card from './Card';
 function App() {
-    return (
-       <div>
-           <h1>Primul meu proiect React</h1>
-           <p>Gheorghe Annemona Gabriela </p>
-       </div>
-    );
+ return (
+ <div>
+ <h1>Laborator PW</h1>
+ <Card />
+ </div>
+ );
 }
 export default App;
