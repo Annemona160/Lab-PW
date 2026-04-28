@@ -18,6 +18,32 @@ app.get('/api/projects', function(req, res) {
  res.json(projects);
 });
 
+
+// GET /api/projects/:id returnează un singur proiect după id
+app.get('/api/projects/:id', function (req, res) {
+  const id = parseInt(req.params.id); 
+  const project = projects.find(p => p.id === id); 
+
+  if (project) {
+    res.json(project);
+  } else {
+    // Dacă id-ul nu există, trimitem eroare 404
+    res.status(404).json({ error: 'Not found' });
+  }
+});
+
+
+// GET /api/stats returnează statistici: total, finalizate, în lucru
+app.get('/api/stats', function (req, res) {
+  const stats = {
+    total: projects.length,
+    finalizate: projects.filter(p => p.done).length,
+    inLucru: projects.filter(p => !p.done).length
+  };
+  res.json(stats);
+});
+
+
 // Porneste serverul
 app.listen(PORT, function() {
  console.log('Server pornit pe http://localhost:' + PORT);
