@@ -58,6 +58,12 @@ function ProjectList() {
           );
         })}
       </ul>
+      <div>
+        <h4>Statistici:</h4>
+        <p>Total proiecte: {projects.length}</p>
+        <p>Finalizate: {projects.filter(p => p.done).length}</p>
+        <p>În lucru: {projects.filter(p => !p.done).length}</p>
+      </div>
    </div>
  );
 }
