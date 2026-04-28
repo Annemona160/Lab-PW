@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+app.use(express.json()); 
 const PORT = 3000;
 // Prima ruta: raspunde la GET /
 app.get('/', function(req, res) {
@@ -41,6 +42,19 @@ app.get('/api/stats', function (req, res) {
     inLucru: projects.filter(p => !p.done).length
   };
   res.json(stats);
+});
+
+
+// POST /api/projects - adauga un proiect nou
+app.post('/api/projects', function(req, res) {
+ const newProject = {
+ id: projects.length + 1,
+ title: req.body.title,
+ tech: req.body.tech,
+ done: req.body.done || false,
+ };
+ projects.push(newProject);
+ res.status(201).json(newProject);
 });
 
 
