@@ -58,6 +58,22 @@ app.post('/api/projects', function(req, res) {
 });
 
 
+
+//DELETe /api/projects - sterge un proiect dupa ID
+ app.delete('/api/projects/:id', function(req, res) {
+  const id = parseInt(req.params.id); 
+  const index = projects.findIndex(p => p.id === id);
+
+  if (index !== -1) {
+     projects.splice(index, 1)
+     res.json({ message: 'Deleted' })
+  } else {
+    res.status(404).json({ error: 'Not found' })
+  }
+ })
+
+
+
 // Porneste serverul
 app.listen(PORT, function() {
  console.log('Server pornit pe http://localhost:' + PORT);
