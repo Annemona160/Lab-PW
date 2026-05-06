@@ -9,7 +9,9 @@ mongoose.connect('mongodb://localhost:27017/dashboard')
  .catch(function(err) {
  console.error('Eroare conectare MongoDB:', err);
  });
- 
+
+ const Project = require('./models/Project');
+
 app.use(express.json()); 
 const PORT = 3000;
 // Prima ruta: raspunde la GET /
