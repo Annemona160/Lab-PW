@@ -21,20 +21,21 @@ app.get('/', function(req, res) {
 
 
 
-/*// GET /api/projects/:id returnează un singur proiect după id
-app.get('/api/projects/:id', function (req, res) {
-  const id = parseInt(req.params.id); 
-  const project = projects.find(p => p.id === id); 
-
+// GET /api/projects/:id returnează un singur proiect după id
+app.get('/api/projects/:id', async function (req, res) {
+  try{
+  const project = await Project.findById(req.params.id)
   if (project) {
     res.json(project);
   } else {
-    // Dacă id-ul nu există, trimitem eroare 404
     res.status(404).json({ error: 'Not found' });
   }
+} catch (err) {
+   res.status(404).json({ error: 'Not found' });
+}
 });
 
-
+/*
 // GET /api/stats returnează statistici: total, finalizate, în lucru
 app.get('/api/stats', function (req, res) {
   const stats = {
@@ -75,18 +76,21 @@ app.post('/api/projects', async function(req, res) {
 
 
 
-//DELETe /api/projects - sterge un proiect dupa ID
- app.delete('/api/projects/:id', function(req, res) {
-  const id = parseInt(req.params.id); 
-  const index = projects.findIndex(p => p.id === id);
+//DELETE /api/projects - sterge un proiect dupa ID
+ app.delete('/api/projects/:id', async function(req, res) {
+  try{
+  const id = (req.params.id); 
+  const deletedProject = await Project.findByIdAndDelete(req.params.id)
 
-  if (index !== -1) {
-     projects.splice(index, 1)
-     res.json({ message: 'Deleted' })
-  } else {
+  if (deletedProject) {
+    res.json({ message: 'Deleted' })
+  }else {
     res.status(404).json({ error: 'Not found' })
   }
- })
+} catch (err) {
+  res.status(404).json({ error: 'Not found' })
+}
+ });
 
 
 
